@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purix Academy | New Way of Learning</title>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Color+Emoji&display=swap">
+  <style>
+    body {
+  font-family: 'Plus Jakarta Sans', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif !important;
+}
+    /* Smooth Scrolling for Anchor Navigation */
+    html {
+      scroll-behavior: smooth;
+    }
+    section {
+      scroll-margin-top: 80px;
+    }
+
+    /* Course Hero Banner Styles */
+    .course-hero-banner {
+      background: linear-gradient(135deg, rgba(14, 24, 52, 0.85), rgba(6, 11, 25, 0.95));
+      border: 1.5px solid var(--neon-cyan);
+      border-radius: 20px;
+      padding: 22px 18px;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(0, 212, 255, 0.25);
+      max-width: 1100px;
+      margin: 0 auto 24px;
+    }
+    .banner-title {
+      font-size: 0.76rem;
+      color: var(--neon-cyan);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .banner-price {
+      font-size: 2.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 6px 0;
+    }
+    .banner-price span {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .banner-features {
+      font-size: 0.82rem;
+      color: var(--text-dim);
+    }
+
+    /* District / Location Specific Styles */
+    .district-card {
+      background: var(--bg-glass);
+      backdrop-filter: var(--blur-filter);
+      -webkit-backdrop-filter: var(--blur-filter);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 24px 20px;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+    .district-card:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 12px 35px rgba(0, 212, 255, 0.25);
+      transform: translateY(-3px);
+    }
+    .district-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      background: rgba(0, 212, 255, 0.12);
+      border: 1px solid var(--border-glass);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .district-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+    .district-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .areas-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+    .area-tags-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .area-chip {
+      background: rgba(14, 25, 54, 0.85);
+      border: 1px solid rgba(0, 212, 255, 0.35);
+      color: #e0f2fe;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    }
+    .area-chip span {
+      color: var(--neon-cyan);
+    }
+
+    /* About Comparison & Pillars Styles */
+    .compare-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 12px;
+    }
+    .comp-box {
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .comp-old {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.28);
+      color: #fca5a5;
+    }
+    .comp-new {
+      background: rgba(0, 212, 255, 0.09);
+      border: 1px solid var(--border-glass);
+      color: #bae6fd;
+    }
+    .comp-heading {
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .comp-old .comp-heading { color: #f87171; }
+    .comp-new .comp-heading { color: var(--neon-cyan); }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .pillar-item {
+      background: rgba(14, 25, 54, 0.7);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 12px;
+    }
+    .pillar-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+    .pillar-desc {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Contact Page & Social Tiles Styles */
+    .contact-layout-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 18px;
+    }
+    .social-section-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .social-tiles-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .social-card {
+      background: var(--bg-glass);
+      backdrop-filter: var(--blur-filter);
+      -webkit-backdrop-filter: var(--blur-filter);
+      border: 1px solid var(--border-glass);
+      border-radius: 18px;
+      padding: 16px 14px;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      transition: all 0.3s ease;
+    }
+    .social-card:hover {
+      transform: translateY(-3px);
+    }
+    .social-insta:hover {
+      border-color: #e1306c;
+      box-shadow: 0 0 20px rgba(225, 48, 108, 0.4);
+    }
+    .social-fb:hover {
+      border-color: #1877f2;
+      box-shadow: 0 0 20px rgba(24, 119, 242, 0.4);
+    }
+    .social-tele:hover {
+      border-color: #229ed9;
+      box-shadow: 0 0 20px rgba(34, 158, 217, 0.4);
+    }
+    .social-yt:hover {
+      border-color: #ff0000;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    }
+    .social-icon-svg {
+      width: 32px !important;
+      height: 32px !important;
+      margin-bottom: 8px;
+      transition: transform 0.25s ease;
+    }
+    .social-card:hover .social-icon-svg {
+      transform: scale(1.1);
+    }
+    .social-name {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 2px;
+    }
+    .social-handle {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+    .direct-reach-box {
+      background: rgba(14, 25, 54, 0.7);
+      border: 1px solid rgba(0, 212, 255, 0.25);
+      border-radius: 18px;
+      padding: 18px;
+      margin-top: 4px;
+    }
+    .reach-title {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--neon-cyan);
+      margin-bottom: 6px;
+    }
+    .reach-text {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* Desktop Layout Rules (768px+) */
+    @media (min-width: 768px) {
+      .compare-container {
+        grid-template-columns: 1fr 1fr;
+      }
+      .pillars-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .contact-layout-grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 28px;
+        align-items: start;
+        padding: 0 24px;
+      }
+      .social-tiles-grid {
+        gap: 16px;
+      }
+      .social-card {
+        padding: 22px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Frosted Glass Navbar -->
+  <nav class="navbar">
+    <a href="#home" class="brand">
+      <img src="images/logo.png" alt="Purix Academy" class="nav-corner-logo">
+      <div class="brand-text-block">
+        <span class="brand-title">Purix</span>
+        <span class="brand-sub">ACADEMY</span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation Anchor Links -->
+    <div class="desktop-nav-links">
+      <a href="#home" class="nav-link active">Home</a>
+      <a href="#courses" class="nav-link">Courses</a>
+      <a href="#locations" class="nav-link">Locations</a>
+      <a href="#about" class="nav-link">About Us</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+
+    <div class="nav-actions-wrap">
+      <button class="btn-nav-action" onclick="openDemoPopup()">Book Demo</button>
+      <button class="hamburger-btn" onclick="toggleDrawer()" aria-label="Open Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Drawer -->
+  <aside class="mobile-nav-drawer" id="mobileDrawer">
+    <a href="#home" class="drawer-link" onclick="toggleDrawer()">🏠 Home</a>
+    <a href="#courses" class="drawer-link" onclick="toggleDrawer()">📚 Courses & Batches</a>
+    <a href="#locations" class="drawer-link" onclick="toggleDrawer()">📍 Learning Hubs</a>
+    <a href="#about" class="drawer-link" onclick="toggleDrawer()">🎯 About Us</a>
+    <a href="#contact" class="drawer-link" onclick="toggleDrawer()">📞 Contact & Support</a>
+  </aside>
+
+  <!-- ==========================================
+       1. HOME / HERO SECTION
+       ========================================== -->
+  <section id="home">
+    <header class="hero">
+      <img src="images/logo.png" alt="Purix Academy" class="hero-large-logo">
+      <div class="hero-tagline-text">New Way of Learning</div>
+      <p>Say goodbye to rote learning. Master Class 8th, 9th & 10th with interactive 3D science breakdowns.</p>
+      <a href="#courses" class="btn-glow-primary">Explore Batches</a>
+    </header>
+
+    <!-- 4 Feature Tiles -->
+    <div class="feature-matrix">
+      <div class="feature-tile">
+        <svg class="tile-svg-icon" viewBox="0 0 24 24">
+          <path d="M9 11l3 3L22 4"></path>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+        </svg>
+        <div class="tile-title">Online Quiz</div>
+      </div>
+
+      <div class="feature-tile">
+        <svg class="tile-svg-icon" viewBox="0 0 24 24">
+          <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+          <path d="M2 2l7.586 7.586"></path>
+          <circle cx="11" cy="11" r="2"></circle>
+        </svg>
+        <div class="tile-title">Colour Notes</div>
+      </div>
+
+      <div class="feature-tile">
+        <svg class="tile-svg-icon" viewBox="0 0 24 24">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+        </svg>
+        <div class="tile-title">All Subjects in One Place</div>
+      </div>
+
+      <div class="feature-tile">
+        <svg class="tile-svg-icon" viewBox="0 0 24 24">
+          <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+          <line x1="12" y1="8" x2="12" y2="16"></line>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+        <div class="tile-title">Minimum Fee 599/-month<br><span style="font-size: 0.7rem; color: var(--neon-cyan); font-weight: 600;">(All Subjects)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       2. COURSES & BATCHES SECTION
+       ========================================== -->
+  <section id="courses">
+    <header class="hero" style="padding-top: 40px;">
+      <span class="badge-glow">Academic Sessions 2027-28</span>
+      <h1>Master Every <span>Concept</span></h1>
+      <p>Zero cramming, 100% visualization. Choose your batch and experience interactive 3D learning.</p>
+    </header>
+
+    <!-- Fee Spotlight Banner -->
+    <div style="padding: 0 18px;">
+      <div class="course-hero-banner">
+        <div class="banner-title">Flat Transparent Pricing</div>
+        <div class="banner-price">₹599/- <span>month</span></div>
+        <div class="banner-features">All Subjects Included • Zero Admission Fee • Full Study Material Access</div>
+      </div>
+    </div>
+
+    <!-- Courses Grid -->
+    <main class="card-container-grid">
+      <!-- 1. Class 8 Foundation -->
+      <article class="cyber-card">
+        <div class="card-top">
+          <span class="badge-batch">Class 8th</span>
+          <span class="price-pill">₹599/-month</span>
+        </div>
+        <div>
+          <h3 class="card-title">Class 8 Foundation</h3>
+          <p class="card-desc">Designed to replace memorization with analytical visual thinking before stepping into high school.</p>
+          <ul class="feature-list">
+            <li>Complete Science & Mathematics syllabus coverage</li>
+            <li>Interactive atomic models, cells & chemical reactions</li>
+            <li>Basic geometry proofs & linear equation step-solvers</li>
+            <li>Weekly online objective quizzes with rank analysis</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">CBSE & BSEB</span>
+          <button onclick="openDemoPopup('Class 8th')" class="btn-card-action">Book Demo →</button>
+        </div>
+      </article>
+
+      <!-- 2. Class 9 Bridge Batch -->
+      <article class="cyber-card">
+        <div class="card-top">
+          <span class="badge-batch">Class 9th</span>
+          <span class="price-pill">₹599/-month</span>
+        </div>
+        <div>
+          <h3 class="card-title">Class 9 Bridge Batch</h3>
+          <p class="card-desc">Builds rock-solid mechanics and molecular foundations to take the pressure off your board year.</p>
+          <ul class="feature-list">
+            <li>3D physics mechanics (Laws of Motion, Gravitation & Work)</li>
+            <li>Structure of Atom & Chemical Formula derivation mastery</li>
+            <li>Chapter-wise curated colour short-notes & formula sheets</li>
+            <li>Dedicated daily doubt-clearing desk via app</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">CBSE & BSEB</span>
+          <button onclick="openDemoPopup('Class 9th')" class="btn-card-action">Book Demo →</button>
+        </div>
+      </article>
+
+      <!-- 3. Class 10 Board Mastery -->
+      <article class="cyber-card">
+        <div class="card-top">
+          <span class="badge-batch">Class 10th</span>
+          <span class="price-pill">₹599/-month</span>
+        </div>
+        <div>
+          <h3 class="card-title">Class 10 Board Mastery</h3>
+          <p class="card-desc">Thorough conceptual mastery and past 10-year question practice engineered to score 95%+ marks.</p>
+          <ul class="feature-list">
+            <li>Light ray optics, circuits & human anatomy 3D breakdowns</li>
+            <li>Complete NCERT solutions + Exemplar question walkthrough</li>
+            <li>Past 10 Years Question (PYQ) banks with model answers</li>
+            <li>Strict board-pattern full-syllabus timed tests</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">CBSE & BSEB</span>
+          <button onclick="openDemoPopup('Class 10th')" class="btn-card-action">Book Demo →</button>
+        </div>
+      </article>
+
+      <!-- 4. Board Special Booster -->
+      <article class="cyber-card">
+        <div class="card-top">
+          <span class="badge-batch" style="background: rgba(0, 212, 255, 0.18); border-color: var(--neon-cyan); color: var(--neon-cyan);">Booster Pack</span>
+          <span class="price-pill">₹599/-month</span>
+        </div>
+        <div>
+          <h3 class="card-title">Board Special (95+ Target)</h3>
+          <p class="card-desc">Targeted fast-track program with answer-presentation techniques to maximize every single mark.</p>
+          <ul class="feature-list">
+            <li>Expected top 100 high-probability board question bank</li>
+            <li>Step-by-step diagrammatic proofs & marking scheme secrets</li>
+            <li>Live topper paper evaluation & flaw corrections</li>
+            <li>Direct 1-on-1 mentor guidance & rapid revision sets</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">Target Board Top Ranks</span>
+          <button onclick="openDemoPopup('Board Special')" class="btn-card-action">Book Demo →</button>
+        </div>
+      </article>
+    </main>
+  </section>
+
+  <!-- ==========================================
+       3. LOCATIONS SECTION
+       ========================================== -->
+  <section id="locations">
+    <header class="hero" style="padding-top: 40px;">
+      <span class="badge-glow">Learning Centers</span>
+      <h1>Active Learning<br><span>Hubs & Centers</span></h1>
+      <p>Find your nearest offline support center or connect directly to our visual batches.</p>
+    </header>
+
+    <main class="card-container-grid">
+      <!-- District 1: Patna -->
+      <article class="district-card">
+        <div>
+          <span class="district-badge">District Center</span>
+          <h2 class="district-title">Patna</h2>
+          <p class="district-desc">Primary offline academic touchpoints and regular evaluation desks in Patna.</p>
+          
+          <div class="areas-label">Available Learning Hubs:</div>
+          <div class="area-tags-wrap">
+            <div class="area-chip"><span>📍</span> Gosai Tola</div>
+            <div class="area-chip"><span>📍</span> Boring Road</div>
+            <div class="area-chip"><span>📍</span> Patliputra Colony</div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-tag">Class 8th, 9th & 10th</span>
+          <a href="https://wa.me/919508774890?text=Hi%20Purix%20Academy,%20I%20am%20from%20Patna" class="btn-card-action">Connect Patna Hub →</a>
+        </div>
+      </article>
+
+      <!-- District 2: Purnea -->
+      <article class="district-card">
+        <div>
+          <span class="district-badge" style="color: #d8b4fe; border-color: var(--border-purple); background: rgba(138, 43, 226, 0.15);">District Center</span>
+          <h2 class="district-title">Purnea</h2>
+          <p class="district-desc">Regional visual learning hub and daily doubt-resolution center in Purnea.</p>
+          
+          <div class="areas-label">Available Learning Hubs:</div>
+          <div class="area-tags-wrap">
+            <div class="area-chip"><span>📍</span> Banmankhi</div>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <span class="card-tag">Class 8th, 9th & 10th</span>
+          <a href="https://wa.me/919508774890?text=Hi%20Purix%20Academy,%20I%20am%20from%20Banmankhi%20Purnea" class="btn-card-action">Connect Purnea Hub →</a>
+        </div>
+      </article>
+    </main>
+  </section>
+
+  <!-- ==========================================
+       4. ABOUT US SECTION
+       ========================================== -->
+  <section id="about">
+    <header class="hero" style="padding-top: 40px;">
+      <span class="badge-glow">Our Mission & Vision</span>
+      <h1>New Way of<br><span>Learning</span></h1>
+      <p>Replacing traditional cramming with high-retention 3D visual concepts for Class 8th, 9th, and 10th students.</p>
+    </header>
+
+    <main class="card-container-grid">
+      <!-- Philosophy Card -->
+      <article class="cyber-card">
+        <div class="card-top">
+          <span class="badge-batch">Our Vision</span>
+          <span class="price-pill">₹599/- month</span>
+        </div>
+        <div>
+          <h3 class="card-title">Why Purix Academy?</h3>
+          <p class="card-desc">Most coaching institutes force students to memorize abstract definitions and formulas. At Purix Academy, every atom, cell, force, and geometric proof is broken down through interactive 3D visualizations so students truly understand the 'why' behind concepts.</p>
+        </div>
+        <div class="card-footer">
+          <span class="card-tag">Conceptual Clarity First</span>
+          <button onclick="openDemoPopup()" class="btn-card-action">Experience 3D Demo →</button>
+        </div>
+      </article>
+
+      <!-- Comparison Card -->
+      <article class="cyber-card">
+        <div class="card-top">
+          <span class="badge-batch" style="background: rgba(0, 212, 255, 0.15); border-color: var(--neon-cyan); color: var(--neon-cyan);">The Difference</span>
+        </div>
+        <div>
+          <h3 class="card-title">Conventional Coaching vs Purix</h3>
+          
+          <div class="compare-container">
+            <div class="comp-box comp-old">
+              <span class="comp-heading">Traditional Tuition:</span>
+              • High yearly fee pressure<br>
+              • Rote memorization on blackboards<br>
+              • Unresolved doubt backlogs<br>
+              • Dull black-and-white notes
+            </div>
+
+            <div class="comp-box comp-new">
+              <span class="comp-heading">The Purix Method:</span>
+              • Flat ₹599/- month (All Subjects)<br>
+              • 3D physics & chemistry visual mastery<br>
+              • Curated high-yield colour micro-notes<br>
+              • Daily live doubt clearing
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 Learning Pillars Card -->
+      <article class="cyber-card" style="grid-column: 1 / -1;">
+        <div class="card-top">
+          <span class="badge-batch">Academic Core</span>
+        </div>
+        <div>
+          <h3 class="card-title">Our Learning Pillars</h3>
+          <div class="pillars-grid">
+            <div class="pillar-item">
+              <div class="pillar-title">🎨 High-Impact Colour Notes</div>
+              <div class="pillar-desc">Concise, formula-dense visual summary sheets designed for 10-minute exam revisions.</div>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-title">📝 Chapter-Wise Online Quizzes</div>
+              <div class="pillar-desc">Objective tests matching modern board patterns with instant rank and error analysis.</div>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-title">🎯 Dual Board Orientation</div>
+              <div class="pillar-desc">Specialized bilingual coaching crafted specifically for CBSE and Bihar Board (BSEB) toppers.</div>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-title">💡 Affordable & Inclusive</div>
+              <div class="pillar-desc">Zero registration fee or hidden kit costs. Standardized quality accessible to every household.</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+  </section>
+
+  <!-- ==========================================
+       5. CONTACT & REGISTRATION SECTION
+       ========================================== -->
+  <section id="contact">
+    <header class="hero" style="padding-top: 40px;">
+      <span class="badge-glow">Get In Touch</span>
+      <h1>Connect With <span>Purix</span></h1>
+      <p>Register for demo lectures or join our digital learning communities.</p>
+    </header>
+
+    <main class="contact-layout-grid">
+      <!-- LEFT SIDE: Registration Form -->
+      <article class="cyber-card" style="opacity: 1; transform: none;">
+        <div class="card-top">
+          <span class="badge-batch">Student Portal</span>
+          <span class="price-pill">Free Demo</span>
+        </div>
+        <h3 class="card-title">Registration Form</h3>
+        <p class="card-desc">Submit your details to secure your batch counseling and test access.</p>
+
+        <form id="contactPageForm">
+          <div class="modal-form-group">
+            <label>Full Name</label>
+            <input type="text" class="modal-input" id="c_name" placeholder="Enter student's name" required>
+          </div>
+
+          <div class="modal-form-group">
+            <label>Mobile Number (WhatsApp)</label>
+            <input type="tel" class="modal-input" id="c_phone" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="modal-form-group">
+              <label>Class</label>
+              <select class="modal-select" id="c_class" required>
+                <option value="" disabled selected>Select</option>
+                <option value="Class 8th">Class 8th</option>
+                <option value="Class 9th">Class 9th</option>
+                <option value="Class 10th">Class 10th</option>
+                <option value="Board Special">Board Special</option>
+              </select>
+            </div>
+            <div class="modal-form-group">
+              <label>Board</label>
+              <select class="modal-select" id="c_board" required>
+                <option value="" disabled selected>Select</option>
+                <option value="CBSE">CBSE</option>
+                <option value="BSEB">Bihar Board</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="modal-form-group">
+              <label>District</label>
+              <input type="text" class="modal-input" id="c_district" placeholder="e.g. Patna, Purnea" required>
+            </div>
+            <div class="modal-form-group">
+              <label>Block / Area</label>
+              <input type="text" class="modal-input" id="c_block" placeholder="e.g. Patliputra, Banmankhi" required>
+            </div>
+          </div>
+
+          <button type="submit" class="modal-submit-btn" id="c_submitBtn">Submit Registration →</button>
+        </form>
+      </article>
+
+      <!-- RIGHT SIDE: Social Communities -->
+      <div class="social-section-wrap">
+        <div class="section-heading" style="padding: 0 4px 6px;">Official <span>Channels</span></div>
+
+        <div class="social-tiles-grid">
+          <!-- Instagram -->
+          <a href="https://instagram.com/purixacademy" target="_blank" class="social-card social-insta">
+            <svg class="social-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#e1306c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+            </svg>
+            <div class="social-name">Instagram</div>
+            <div class="social-handle">@purixacademy</div>
+          </a>
+
+          <!-- Facebook -->
+          <a href="https://facebook.com/purixacademy" target="_blank" class="social-card social-fb">
+            <svg class="social-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#1877f2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+            </svg>
+            <div class="social-name">Facebook</div>
+            <div class="social-handle">Purix Academy</div>
+          </a>
+
+          <!-- Telegram -->
+          <a href="https://t.me/purixacademy" target="_blank" class="social-card social-tele">
+            <svg class="social-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#229ed9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+            <div class="social-name">Telegram</div>
+            <div class="social-handle">Study Notes & PDFs</div>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://youtube.com/@purixacademy" target="_blank" class="social-card social-yt">
+            <svg class="social-icon-svg" viewBox="0 0 24 24" fill="none" stroke="#ff0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
+            </svg>
+            <div class="social-name">YouTube</div>
+            <div class="social-handle">3D Video Lectures</div>
+          </a>
+        </div>
+
+        <!-- Quick Reach Desk -->
+        <div class="direct-reach-box">
+          <div class="reach-title">Academic Counseling Desk</div>
+          <div class="reach-text">Daily timings: 9:00 AM – 8:00 PM<br>Fastest response via WhatsApp support or demo booking.</div>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ==========================================
+       STICKY BOTTOM CONVERSION BAR
+       ========================================== -->
+  <aside class="bottom-bar">
+    <a href="https://wa.me/919508774890" class="btn-wa-action">💬 WhatsApp</a>
+    <button onclick="openDemoPopup()" class="btn-demo-action">🚀 Book Free Demo</button>
+  </aside>
+
+  <!-- ==========================================
+       UNIVERSAL DEMO BOOKING MODAL POPUP
+       ========================================== -->
+  <div class="modal-backdrop" id="demoModal">
+    <div class="modal-window">
+      <div class="modal-close-btn" onclick="closeDemoPopup()">✕</div>
+      <h3 class="modal-heading">Book Free Demo</h3>
+      <p class="modal-sub">Experience interactive 3D learning firsthand.</p>
+
+      <form id="googleSheetForm">
+        <div class="modal-form-group">
+          <label>Full Name</label>
+          <input type="text" class="modal-input" name="name" id="student_name" placeholder="Enter student's name" required>
+        </div>
+
+        <div class="modal-form-group">
+          <label>Mobile Number (WhatsApp)</label>
+          <input type="tel" class="modal-input" name="phone" id="student_phone" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" maxlength="10" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div class="modal-form-group">
+            <label>Class</label>
+            <select class="modal-select" name="class" id="student_class" required>
+              <option value="" disabled selected>Select</option>
+              <option value="Class 8th">Class 8th</option>
+              <option value="Class 9th">Class 9th</option>
+              <option value="Class 10th">Class 10th</option>
+              <option value="Board Special">Board Special</option>
+            </select>
+          </div>
+          <div class="modal-form-group">
+            <label>Board</label>
+            <select class="modal-select" name="board" id="student_board" required>
+              <option value="" disabled selected>Select</option>
+              <option value="CBSE">CBSE</option>
+              <option value="BSEB">Bihar Board</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+          <div class="modal-form-group">
+            <label>District</label>
+            <input type="text" class="modal-input" name="district" id="student_district" placeholder="e.g. Patna" required>
+          </div>
+          <div class="modal-form-group">
+            <label>Block / Area</label>
+            <input type="text" class="modal-input" name="block" id="student_block" placeholder="e.g. Patliputra" required>
+          </div>
+        </div>
+
+        <button type="submit" class="modal-submit-btn" id="submitBtn">Submit Registration →</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Mobile Drawer Handler
+    function toggleDrawer() {
+      document.getElementById('mobileDrawer').classList.toggle('open');
+    }
+
+    // Modal Popup Handlers
+    function openDemoPopup(preSelectedClass) {
+      if (preSelectedClass) {
+        const classSelect = document.getElementById('student_class');
+        if (classSelect) classSelect.value = preSelectedClass;
+      }
+      document.getElementById('demoModal').classList.add('active');
+    }
+
+    function closeDemoPopup() {
+      document.getElementById('demoModal').classList.remove('active');
+    }
+
+    // Webhook Configuration (Replace with your actual Google Apps Script Web App URL)
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzjKYDZ5fTuScrCYWlGn47bJseEVIaC7NOWc5N2rgMHh1bq8MKFb7F-RWPOMAYM50pZA/exec";
+
+  // 1. Popup Modal Submission Handler
+  document.getElementById('googleSheetForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const submitBtn = document.getElementById('submitBtn');
+    submitBtn.innerText = "Submitting...";
+    submitBtn.disabled = true;
+
+    const formData = {
+      name: document.getElementById('student_name').value,
+      phone: document.getElementById('student_phone').value,
+      class: document.getElementById('student_class').value,
+      board: document.getElementById('student_board').value,
+      district: document.getElementById('student_district').value,
+      block: document.getElementById('student_block').value,
+      date: new Date().toLocaleString()
+    };
+
+    // Google Sheet me background request
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    // Fast success response
+    setTimeout(() => {
+      alert("Registration Successful! 🎉");
+      closeDemoPopup();
+      submitBtn.innerText = "Submit Registration →";
+      submitBtn.disabled = false;
+      document.getElementById('googleSheetForm').reset();
+    }, 500);
+  });
+    // 2. Main Page Contact Form Handler
+    document.getElementById('contactPageForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('c_submitBtn');
+      btn.innerText = "Submitting...";
+      btn.disabled = true;
+
+      const payload = {
+        name: document.getElementById('c_name').value,
+        phone: document.getElementById('c_phone').value,
+        class: document.getElementById('c_class').value,
+        board: document.getElementById('c_board').value,
+        district: document.getElementById('c_district').value,
+        block: document.getElementById('c_block').value,
+        date: new Date().toLocaleString()
+      };
+
+      if (GOOGLE_SCRIPT_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE") {
+        alert("Registration Submitted Successfully! (Connect Apps Script to store in Sheet)");
+        btn.innerText = "Submit Registration →";
+        btn.disabled = false;
+        document.getElementById('contactPageForm').reset();
+        return;
+      }
+
+      fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      }).then(() => {
+        alert("Success! Your registration has been received.");
+        document.getElementById('contactPageForm').reset();
+      }).catch(() => {
+        alert("Registration submitted! Our mentor will contact you.");
+      }).finally(() => {
+        btn.innerText = "Submit Registration →";
+        btn.disabled = false;
+      });
+    });
+    // Automatic Active Link on Scroll & Click (Scrollspy)
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".desktop-nav-links .nav-link");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach((section) => {
+        const sectionTop = section.offsetTop - 120;
+        if (window.pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${current}`) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
